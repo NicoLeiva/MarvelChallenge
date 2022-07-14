@@ -24,7 +24,10 @@ class MainActivity : AppCompatActivity(){
         setContentView(binding.root)
         saveDataSession()
         binding.viewPager.adapter = adapter
-        "Marvel Challenge".also { supportActionBar?.title = it }
+        createTabs()
+    }
+
+    private fun createTabs(){
         val tabLayoutMediator = TabLayoutMediator(binding.tabLayout,binding.viewPager
         ) { tab, position ->
             when (position) {
@@ -40,7 +43,11 @@ class MainActivity : AppCompatActivity(){
             }
         }
         tabLayoutMediator.attach()
+    }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        createTabs()
     }
 
    override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -80,6 +87,4 @@ class MainActivity : AppCompatActivity(){
         onBackPressed()
         return true
     }
-
-
 }

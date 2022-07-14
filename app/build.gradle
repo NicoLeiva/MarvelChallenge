@@ -30,6 +30,9 @@ android {
         ]
     }
     viewBinding.enabled = true
+    buildFeatures {
+        dataBinding true
+    }
 }
 
 dependencies {
@@ -77,5 +80,13 @@ dependencies {
 
     // Saved state module for ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+
+    def koin_version="3.2.0-beta-1"
+    // Koin for Kotlin apps
+    implementation "io.insert-koin:koin-android:$koin_version"
+
+    // Koin Test
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
 }
 

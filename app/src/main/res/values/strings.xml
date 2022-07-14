@@ -1,11 +1,9 @@
 <resources>
-    <string name="app_name">MarvelApp</string>
+    <string name="app_name">Marvel Challenge</string>
     <string name="prefs_file">123123123</string>
     <string name="facebook_app_id">1783663955314061</string>
     <string name="fb_login_protocol_scheme">fb1783663955314061</string>
     <string name="facebook_client_token">3fccec96d6430576beec64d97920e422</string>
-
-
     <string name="text_character">Personajes</string>
     <string name="text_events">Eventos</string>
     <string name="text_email">email</string>
@@ -15,11 +13,5 @@
     <string name="facebook_error">Error al iniciar Facebook.</string>
     <string name="user_error">Error al crear el usuario</string>
     <string name="user_or_password_error">Error creando usuario o password</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!--string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string-->
-
 
 </resources>

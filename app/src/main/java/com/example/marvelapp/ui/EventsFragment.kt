@@ -11,6 +11,7 @@ import com.example.marvelapp.*
 import com.example.marvelapp.databinding.FragmentEventsBinding
 import com.example.marvelapp.model.Event
 import com.example.marvelapp.ui.adapter.ExpansibleListViewAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EventsFragment : Fragment() {
 
@@ -19,27 +20,26 @@ class EventsFragment : Fragment() {
     private  var detailsList: HashMap<String, List<Event>> = HashMap()
     private lateinit var binding: FragmentEventsBinding
 
-    private lateinit var viewModel: CharacterViewModel
+    private val viewModel by viewModel<CharacterViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentEventsBinding.inflate(inflater, container, false)
-        val viewModelFactory = ViewModelFactory()
-        viewModel = viewModelFactory.create(CharacterViewModel::class.java)
+        initViewModel()
+        return binding.root
+    }
 
+    private fun initViewModel(){
         viewModel.responseEvent.observe(viewLifecycleOwner){
-                    when(it) {
-                        is CharacterViewModel.EventState.Error -> showErrorAlert(it.error)
-                        is CharacterViewModel.EventState.Loading -> binding.progressBar.isVisible = it.loading
-                        is CharacterViewModel.EventState.Success -> createExpansibleList(it.response.data.results)
-                    }
+            when(it) {
+                is CharacterViewModel.EventState.Error -> showErrorAlert(it.error)
+                is CharacterViewModel.EventState.Loading -> binding.progressBar.isVisible = it.loading
+                is CharacterViewModel.EventState.Success -> createExpansibleList(it.response.data.results)
+            }
         }
         viewModel.getEventData()
-
-
-        return binding.root
     }
 
     private fun createExpansibleList(listEvent: List<Event>){

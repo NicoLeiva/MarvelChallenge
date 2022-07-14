@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.marvelapp.CharacterViewModel
 import com.example.marvelapp.R
-import com.example.marvelapp.ViewModelFactory
+import com.example.marvelapp.databinding.ActivityMainBinding
 import com.example.marvelapp.databinding.FragmentCharactersBinding
 import com.example.marvelapp.model.CharacterData
 import com.example.marvelapp.ui.adapter.RecyclerViewAdapter
-import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.flow.collectLatest
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharactersFragment : Fragment() {
 
+    private val viewModel by viewModel<CharacterViewModel>()
     private lateinit var binding: FragmentCharactersBinding
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
@@ -27,6 +28,12 @@ class CharactersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCharactersBinding.inflate(inflater, container, false)
+        createView()
+        initViewModel()
+        return binding.root
+    }
+
+    private fun createView(){
         recyclerViewAdapter = RecyclerViewAdapter { data -> showCharacterDetails(data) }
         binding.recyclerView.apply {
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -34,14 +41,8 @@ class CharactersFragment : Fragment() {
             addItemDecoration(decoration)
             adapter = recyclerViewAdapter
         }
-        initViewModel()
-        return binding.root
     }
-
-
     private fun initViewModel() {
-        val viewModelFactory = ViewModelFactory()
-        val viewModel = viewModelFactory.create(CharacterViewModel::class.java)
         lifecycleScope.launchWhenCreated {
             viewModel.getListData().collectLatest {
                 recyclerViewAdapter.submitData(it)
@@ -50,13 +51,11 @@ class CharactersFragment : Fragment() {
     }
 
     private fun showCharacterDetails(data: CharacterData) {
-
-        activity?.findViewById<TabLayout>(R.id.tabLayout)?.visibility = View.INVISIBLE
+        val binding = ActivityMainBinding.inflate(layoutInflater)
         val transaction = activity?.supportFragmentManager?.beginTransaction()
+        binding.tabLayout.removeAllTabs()
         transaction?.replace(R.id.main_activity, DetailsCharacterFragment.newInstance(data))
         transaction?.addToBackStack("")
         transaction?.commit()
     }
-
-
 }

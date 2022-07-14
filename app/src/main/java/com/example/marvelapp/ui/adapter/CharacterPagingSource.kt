@@ -27,10 +27,4 @@ class CharacterPagingSource(private val characterRemoteDataSourceImpl:CharacterR
             LoadResult.Error(e)
         }
     }
-
-    companion object{
-        const val FIRST_PAGE_INDEX = 1
-        const val PAGE_SIZE = 15
-
-    }
 }
