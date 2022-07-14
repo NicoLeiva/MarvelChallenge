@@ -3,10 +3,9 @@ package com.example.marvelapp.ui.adapter
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.marvelapp.model.CharacterData
-import com.example.marvelapp.connection.RetroService
 import java.lang.Exception
 
-class CharacterPagingSource(private val characterRemoteDataSourceImpl:CharacterRemoteDataSourceImpl): PagingSource<Int, CharacterData>() {
+class CharacterPagingSource(private val characterRemoteDataSourceImpl:CharacterRemoteDataSource): PagingSource<Int, CharacterData>() {
     override fun getRefreshKey(state: PagingState<Int, CharacterData>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)

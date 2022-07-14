@@ -23,8 +23,6 @@ class CharacterViewModel(private var repository: ICharacterRepository): ViewMode
 
     private fun onError(message: String) {
         responseEvent.postValue(EventState.Error(message))
-        //TODO: PREGUNTAR ME PARECE QUE ENTRA UNA SOLA VEZ
-        responseEvent.postValue(EventState.Loading(false))
     }
 
     fun getEventData() {

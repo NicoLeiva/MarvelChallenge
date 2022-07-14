@@ -23,8 +23,6 @@
         app:tabGravity="fill"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Small"
         app:tabMaxWidth="0dp"
-        app:tabMode="fixed">
-    </com.google.android.material.tabs.TabLayout>
-
+        app:tabMode="fixed"/>
 
 </LinearLayout>

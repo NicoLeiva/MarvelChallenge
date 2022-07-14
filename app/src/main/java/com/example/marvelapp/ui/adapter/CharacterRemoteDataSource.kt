@@ -3,7 +3,7 @@ package com.example.marvelapp.ui.adapter
 import com.example.marvelapp.connection.RetroService
 import com.example.marvelapp.model.CharacterData
 
-class CharacterRemoteDataSourceImpl(private val apiService: RetroService){
+class CharacterRemoteDataSource(private val apiService: RetroService){
 
     suspend fun getAllCharacter(offset: Int): Result<Pair<Int, List<CharacterData>>> {
         return try {

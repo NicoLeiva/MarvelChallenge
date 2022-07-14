@@ -29,7 +29,6 @@ class RecyclerViewAdapter(private val mListener:(CharacterData) -> Unit):
         private val cardView:CardView = view.findViewById(R.id.card_view)
         private val imageView: ImageView = view.findViewById(R.id.imageView)
         private val title: TextView = view.findViewById(R.id.character_title)
-        private val subtitle: TextView = view.findViewById(R.id.character_subtitle)
         fun bind(data: CharacterData, mListener: (CharacterData) -> Unit){
 
             val url = "${data.thumbnail.path}.${data.thumbnail.extension}".replace("http", "https")
@@ -38,7 +37,6 @@ class RecyclerViewAdapter(private val mListener:(CharacterData) -> Unit):
             } catch (e:Exception){
                 println("IMAGE" + e.message)
             }
-           // println("URL IMAGE: $url")
             title.text = data.name
             cardView.setOnClickListener { mListener(data)}
         }

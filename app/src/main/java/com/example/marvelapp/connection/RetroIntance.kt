@@ -8,7 +8,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetroInstance {
 
     companion object {
-        //private const val baseUrl = "https://rickandmortyapi.com/api/"
         private const val baseUrl = "https://gateway.marvel.com/v1/public/"
         fun getRetroInstance(): Retrofit {
 

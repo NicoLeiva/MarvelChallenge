@@ -7,12 +7,12 @@ import com.example.marvelapp.connection.RetroService
 import com.example.marvelapp.model.CharacterData
 import com.example.marvelapp.model.ResponseEvent
 import com.example.marvelapp.ui.adapter.CharacterPagingSource
-import com.example.marvelapp.ui.adapter.CharacterRemoteDataSourceImpl
+import com.example.marvelapp.ui.adapter.CharacterRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 class CharacterRepositoryImpl(private val apiService: RetroService,
-                              private val characterRemoteDataSourceImpl:CharacterRemoteDataSourceImpl): ICharacterRepository {
+                              private val characterRemoteDataSourceImpl:CharacterRemoteDataSource): ICharacterRepository {
 
     override suspend fun getEventData() : Response<ResponseEvent> {
         return apiService.getEventListData()

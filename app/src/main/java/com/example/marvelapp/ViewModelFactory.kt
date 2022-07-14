@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.marvelapp.connection.RetroInstance
 import com.example.marvelapp.connection.RetroService
 import com.example.marvelapp.repository.CharacterRepositoryImpl
-import com.example.marvelapp.ui.adapter.CharacterRemoteDataSourceImpl
+import com.example.marvelapp.ui.adapter.CharacterRemoteDataSource
 
 class ViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
@@ -14,7 +14,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
                 val apiService = RetroInstance.getRetroInstance().create(RetroService::class.java)
                             CharacterViewModel (
                             CharacterRepositoryImpl(apiService,
-                                CharacterRemoteDataSourceImpl(apiService))
+                                CharacterRemoteDataSource(apiService))
 
                 )
             }

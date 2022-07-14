@@ -1,24 +1,21 @@
 package com.example.marvelapp.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavHostController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.marvelapp.CharacterViewModel
 import com.example.marvelapp.R
-import com.example.marvelapp.ui.adapter.RecyclerViewAdapter
 import com.example.marvelapp.ViewModelFactory
-import com.example.marvelapp.model.CharacterData
 import com.example.marvelapp.databinding.FragmentCharactersBinding
+import com.example.marvelapp.model.CharacterData
+import com.example.marvelapp.ui.adapter.RecyclerViewAdapter
+import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class CharactersFragment : Fragment() {
 
@@ -53,9 +50,12 @@ class CharactersFragment : Fragment() {
     }
 
     private fun showCharacterDetails(data: CharacterData) {
-        /*val action = CharactersFragmentDirections
-            .actionCharactersFragmentToDetailsCharacterFragment(data)
-        NavHostFragment.findNavController(this).navigate(action)*/
+
+        activity?.findViewById<TabLayout>(R.id.tabLayout)?.visibility = View.INVISIBLE
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+        transaction?.replace(R.id.main_activity, DetailsCharacterFragment.newInstance(data))
+        transaction?.addToBackStack("")
+        transaction?.commit()
     }
 
 

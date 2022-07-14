@@ -6,17 +6,15 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.BaseExpandableListAdapter
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
-import com.example.marvelapp.model.Event
 import com.example.marvelapp.R
+import com.example.marvelapp.model.Event
+import com.example.marvelapp.utils.DateUtils.parseDate
+import com.example.marvelapp.utils.ImageUtils.createUrlImage
 import com.squareup.picasso.Picasso
-import java.text.DateFormatSymbols
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
-import kotlin.collections.HashMap
 
 class ExpansibleListViewAdapter internal constructor(private val context:Context,
                                                      private val headerList:List<Event>, private val detailsList: HashMap<String, List<Event>>):
@@ -63,17 +61,9 @@ class ExpansibleListViewAdapter internal constructor(private val context:Context
         val dateTV = convertView.findViewById<TextView>(R.id.character_subtitle)
         val imageView = convertView.findViewById<ImageView>(R.id.imageView)
         headerTV.text = event.title
-        val url = "${event.thumbnail.path}.${event.thumbnail.extension}".replace("http", "https")
+        val url = createUrlImage(event.thumbnail.path,event.thumbnail.extension)
         Picasso.get().load(url).into(imageView)
-
-        println("URL IMAGE: $url")
-        val date = LocalDate.parse(event.modified.removeRange(19,24).replace("T"," "),
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString()
-        val dateFormated = LocalDate.parse(date)
-        val sym = DateFormatSymbols.getInstance( Locale("es","ar"))
-        sym.months = arrayOf("Enero","Febrero","Marzo","Abril","Mayo","Junio", "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre")
-        dateTV.text = SimpleDateFormat(PATTERN, sym).format(Date(dateFormated.year-1900,
-            dateFormated.monthValue-1,dateFormated.dayOfMonth))
+        dateTV.text = parseDate(event.modified)
         return convertView
     }
 
@@ -94,10 +84,6 @@ class ExpansibleListViewAdapter internal constructor(private val context:Context
 
     override fun isChildSelectable(p0: Int, p1: Int): Boolean {
         return true
-    }
-
-    companion object {
-        const val PATTERN = "dd 'de' MMMM yyyy"
     }
 
 }

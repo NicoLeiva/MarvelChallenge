@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
 import com.example.marvelapp.R
 import com.example.marvelapp.databinding.ActivityMainBinding
 import com.example.marvelapp.ui.adapter.ViewPagerAdapter
@@ -44,17 +43,16 @@ class MainActivity : AppCompatActivity(){
 
     }
 
-
-   /* override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+   override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater:MenuInflater = menuInflater
         inflater.inflate(R.menu.close_session_menu, menu)
         return true
-    }*/
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.close_session -> closeSession()
-            else -> super.onOptionsItemSelected(item);
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -82,5 +80,6 @@ class MainActivity : AppCompatActivity(){
         onBackPressed()
         return true
     }
+
 
 }
