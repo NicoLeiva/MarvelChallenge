@@ -12,6 +12,8 @@
     <string name="title_error">Error</string>
     <string name="facebook_error">Error al iniciar Facebook.</string>
     <string name="user_error">Error al crear el usuario</string>
-    <string name="user_or_password_error">Error creando usuario o password</string>
+    <string name="user_or_password_error">The combination of Email and Password is not correct. Please retry.</string>
+    <string name="text_email_hint">Email</string>
+    <string name="text_password_hint">Password</string>
 
 </resources>

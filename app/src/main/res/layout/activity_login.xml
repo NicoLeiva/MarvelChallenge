@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="8dp"
-                app:errorEnabled="true"
+                app:errorIconDrawable="@null"
                 app:layout_constraintStart_toEndOf="@+id/ic_email"
                 app:layout_constraintBottom_toBottomOf="parent">
 
@@ -93,8 +93,7 @@
                     android:background="@color/transparent"
                     android:inputType="textPassword|textNoSuggestions"
                     app:passwordToggleEnabled="true"
-                    android:hint="Email"
-                    android:contentDescription="Email"
+                    android:hint="@string/text_email_hint"
 
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -128,6 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
+                app:errorIconDrawable="@null"
                 android:layout_marginTop="8dp"
                 app:errorEnabled="true"
                 app:layout_constraintStart_toEndOf="@+id/ic_pass"
@@ -140,7 +140,7 @@
                 android:background="@color/transparent"
                 android:inputType="textPassword|textNoSuggestions"
                 app:passwordToggleEnabled="true"
-                android:hint="Password"
+                android:hint="@string/text_password_hint"
                 android:contentDescription="PASSWORD"
 
                 />

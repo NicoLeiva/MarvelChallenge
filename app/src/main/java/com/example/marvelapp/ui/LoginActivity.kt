@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.marvelapp.R
 import com.example.marvelapp.databinding.ActivityLoginBinding
+import com.example.marvelapp.utils.ToastUtils.showCustomToast
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -61,7 +63,8 @@ class LoginActivity : AppCompatActivity() {
                             showAlert(getString(R.string.user_or_password_error))
                     }
 
-            }
+            }  else
+                showErrors()
         }
     }
     private fun createUser() {
@@ -75,9 +78,14 @@ class LoginActivity : AppCompatActivity() {
                         } else
                             showAlert(getString(R.string.user_error))
                     }
-
-            }
+            } else
+                showErrors()
         }
+    }
+
+    private fun showErrors(){
+        Toast(this).showCustomToast(getString(R.string.user_or_password_error), this)
+        binding.tvUser.error = "error"
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -94,7 +102,6 @@ class LoginActivity : AppCompatActivity() {
             LoginManager.getInstance().registerCallback( callbackManager,
                 object : FacebookCallback<LoginResult> {
                     override fun onCancel() {
-
                     }
 
                     override fun onError(error: FacebookException) {
