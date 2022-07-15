@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.marvelapp.CharacterViewModel
 import com.example.marvelapp.R
-import com.example.marvelapp.databinding.ActivityMainBinding
 import com.example.marvelapp.databinding.FragmentCharactersBinding
 import com.example.marvelapp.model.CharacterData
 import com.example.marvelapp.ui.adapter.RecyclerViewAdapter
@@ -51,10 +50,8 @@ class CharactersFragment : Fragment() {
     }
 
     private fun showCharacterDetails(data: CharacterData) {
-        val binding = ActivityMainBinding.inflate(layoutInflater)
         val transaction = activity?.supportFragmentManager?.beginTransaction()
-        binding.tabLayout.removeAllTabs()
-        transaction?.replace(R.id.main_activity, DetailsCharacterFragment.newInstance(data))
+        transaction?.replace(R.id.content_placeholder, DetailsCharacterFragment.newInstance(data))
         transaction?.addToBackStack("")
         transaction?.commit()
     }

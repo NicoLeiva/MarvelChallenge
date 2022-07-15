@@ -45,11 +45,6 @@ class MainActivity : AppCompatActivity(){
         tabLayoutMediator.attach()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        createTabs()
-    }
-
    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater:MenuInflater = menuInflater
         inflater.inflate(R.menu.close_session_menu, menu)

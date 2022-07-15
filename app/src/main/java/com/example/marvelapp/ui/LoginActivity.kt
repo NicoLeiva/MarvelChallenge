@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.marvelapp.R
@@ -23,58 +25,54 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val callbackManager: CallbackManager = CallbackManager.Factory.create()
 
-    override fun onStart() {
-        binding.loginView.visibility = View.VISIBLE
-        super.onStart()
+    enum class ProviderType {
+        BASIC, FACEBOOK
     }
-    private fun session(){
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        val email = prefs.getString(getString(R.string.text_email), null)
-        val provider = prefs.getString(getString(R.string.text_provider),null)
-        if (email != null && provider != null) {
-            binding.loginView.visibility = View.INVISIBLE
-            showMain(email, provider)
-        }
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
-        session()
+        getDataSession()
         setupScreen()
     }
 
-    private fun setupScreen(){
+    private fun setupScreen() {
         loginUser()
         createUser()
         loginFacebook()
     }
 
-    private fun loginUser(){
-        binding.loginButton.setOnClickListener{
-            if(binding.user.text.isNotEmpty() && binding.pass.text.isNotEmpty()){
+    private fun loginUser() {
+        binding.loginButton.setOnClickListener {
+            if (binding.user.text.isNotEmpty() && binding.pass.text.isNotEmpty()) {
                 FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(binding.user.text.toString(),
-                        binding.pass.text.toString()).addOnCompleteListener{
-                        if(it.isSuccessful){
-                            showMain(it.result.user?.email?: "" , ProviderType.BASIC.name)
+                    .signInWithEmailAndPassword(
+                        binding.user.text.toString(),
+                        binding.pass.text.toString()
+                    ).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            showMain(it.result.user?.email ?: "", ProviderType.BASIC.name)
                         } else
                             showAlert(getString(R.string.user_or_password_error))
                     }
 
-            }  else
+            } else
                 showErrors()
         }
     }
+
     private fun createUser() {
-        binding.registerButton.setOnClickListener{
-            if(binding.user.text.isNotEmpty() && binding.pass.text.isNotEmpty()){
+        binding.registerButton.setOnClickListener {
+            if (binding.user.text.isNotEmpty() && binding.pass.text.isNotEmpty()) {
                 FirebaseAuth.getInstance()
-                    .createUserWithEmailAndPassword(binding.user.text.toString(),
-                        binding.pass.text.toString()).addOnCompleteListener{
-                        if(it.isSuccessful){
-                            showMain(it.result.user?.email?: "" , ProviderType.BASIC.name)
+                    .createUserWithEmailAndPassword(
+                        binding.user.text.toString(),
+                        binding.pass.text.toString()
+                    ).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            showMain(it.result.user?.email ?: "", ProviderType.BASIC.name)
                         } else
                             showAlert(getString(R.string.user_error))
                     }
@@ -83,23 +81,37 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun showErrors(){
+    private fun showErrors() {
         Toast(this).showCustomToast(getString(R.string.user_or_password_error), this)
         binding.tvUser.error = "error"
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager.onActivityResult(requestCode, resultCode,data)
+        callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
 
+    }
+    override fun onStart() {
+        binding.loginView.visibility = View.VISIBLE
+        super.onStart()
+    }
+
+    private fun getDataSession() {
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        val email = prefs.getString(getString(R.string.text_email), null)
+        val provider = prefs.getString(getString(R.string.text_provider), null)
+        if (email != null && provider != null) {
+            binding.loginView.visibility = View.INVISIBLE
+            showMain(email, provider)
+        }
     }
 
     private fun loginFacebook() {
         binding.facebookButton.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
-        LoginManager.getInstance().logInWithReadPermissions(this, listOf(getString(R.string.text_email)))
-
-            LoginManager.getInstance().registerCallback( callbackManager,
+            LoginManager.getInstance()
+                .logInWithReadPermissions(this, listOf(getString(R.string.text_email)))
+            LoginManager.getInstance().registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult> {
                     override fun onCancel() {
                     }
@@ -125,24 +137,21 @@ class LoginActivity : AppCompatActivity() {
                                 }
                         }
                     }
-
                 })
         }
     }
 
-    private fun showAlert(msj:String) {
+
+    private fun showAlert(msj: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.title_error))
         builder.setMessage(msj)
-        builder.setPositiveButton(getString(R.string.btn_accept),null)
+        builder.setPositiveButton(getString(R.string.btn_accept), null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
 
-    enum class ProviderType {
-        BASIC,FACEBOOK
-    }
-    private fun showMain(username:String, provider:String ){
+    private fun showMain(username: String, provider: String) {
         val mainIntent = Intent(this, MainActivity::class.java).apply {
             putExtra(getString(R.string.text_email), username)
             putExtra(getString(R.string.text_provider), provider)
