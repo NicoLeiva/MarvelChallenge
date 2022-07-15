@@ -15,5 +15,8 @@
     <string name="user_or_password_error">The combination of Email and Password is not correct. Please retry.</string>
     <string name="text_email_hint">Email</string>
     <string name="text_password_hint">Password</string>
-
+    <string name="text_button_login">LOGIN</string>
+    <string name="text_button_register">REGISTRARSE</string>
+    <string name="text_facebook">Facebook</string>
+    <string name="btn_close">Cerrar</string>
 </resources>

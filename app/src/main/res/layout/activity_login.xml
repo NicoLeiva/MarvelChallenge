@@ -30,16 +30,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="22dp"
+            android:layout_margin="@dimen/margin_medium"
             android:layout_gravity="center"
             android:background="@color/black"
             android:src="@drawable/logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            android:contentDescription="@string/app_name" />
 
     </LinearLayout>
 
@@ -47,8 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:weightSum="1"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
         android:orientation="vertical"
         android:background="@color/background_login"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,28 +57,28 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@color/light_grey"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="21dp">
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium">
 
             <ImageView
                 android:id="@+id/ic_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_medium"
                 android:src="@drawable/ic_email_black_24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                />
+                android:contentDescription="@string/text_email" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tv_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/margin_top_60"
+                android:layout_marginTop="@dimen/margin_small"
                 app:errorIconDrawable="@null"
                 app:layout_constraintStart_toEndOf="@+id/ic_email"
                 app:layout_constraintBottom_toBottomOf="parent">
@@ -94,8 +91,7 @@
                     android:inputType="textPassword|textNoSuggestions"
                     app:passwordToggleEnabled="true"
                     android:hint="@string/text_email_hint"
-
-                    />
+                    android:autofillHints="emailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -106,29 +102,29 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@color/light_grey"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="21dp">
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium">
 
             <ImageView
                 android:id="@+id/ic_pass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_medium"
                 android:src="@drawable/ic_lock_black_24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                />
+                android:contentDescription="@string/text_password_hint" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tv_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="@dimen/margin_top_60"
                 app:errorIconDrawable="@null"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/margin_small"
                 app:errorEnabled="true"
                 app:layout_constraintStart_toEndOf="@+id/ic_pass"
                 app:layout_constraintBottom_toBottomOf="parent">
@@ -141,9 +137,7 @@
                 android:inputType="textPassword|textNoSuggestions"
                 app:passwordToggleEnabled="true"
                 android:hint="@string/text_password_hint"
-                android:contentDescription="PASSWORD"
-
-                />
+                android:autofillHints="password" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -155,8 +149,8 @@
             android:layout_gravity="center"
             android:background="@color/light_grey"
             android:textColor="@color/grey"
-            android:layout_marginTop="22dp"
-            android:text="Login" />
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/text_button_login" />
 
         <Button
             android:id="@+id/registerButton"
@@ -165,8 +159,8 @@
             android:layout_gravity="center"
             android:background="@color/light_grey"
             android:textColor="@color/grey"
-            android:layout_marginTop="22dp"
-            android:text="REGISTRARSE" />
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/text_button_register" />
         <ImageView
             android:id="@+id/facebookButton"
             android:layout_width="wrap_content"
@@ -174,7 +168,8 @@
             android:layout_gravity="center"
             android:background="@color/light_grey"
             android:textColor="@color/grey"
-            android:layout_marginTop="22dp"
-            android:src="@drawable/ic_icons8_facebook"/>
+            android:layout_marginTop="@dimen/margin_medium"
+            android:src="@drawable/ic_icons8_facebook"
+            android:contentDescription="@string/text_facebook" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

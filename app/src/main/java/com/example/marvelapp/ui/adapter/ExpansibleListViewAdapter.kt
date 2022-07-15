@@ -17,7 +17,8 @@ import com.example.marvelapp.utils.ImageUtils.createUrlImage
 import com.squareup.picasso.Picasso
 
 class ExpansibleListViewAdapter internal constructor(private val context:Context,
-                                                     private val headerList:List<Event>, private val detailsList: HashMap<String, List<Event>>):
+                                                     private val headerList:List<Event>,
+                                                     private val detailsList: HashMap<String, List<Event>>):
     BaseExpandableListAdapter() {
 
     override fun getGroupCount(): Int {

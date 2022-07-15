@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.marvelapp.CharacterViewModel
 import com.example.marvelapp.R
@@ -36,8 +35,6 @@ class CharactersFragment : Fragment() {
         recyclerViewAdapter = RecyclerViewAdapter { data -> showCharacterDetails(data) }
         binding.recyclerView.apply {
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
-            val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-            addItemDecoration(decoration)
             adapter = recyclerViewAdapter
         }
     }

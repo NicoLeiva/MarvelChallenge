@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.CharactersFragment"
     android:id="@+id/character_view"
-    android:background="@color/grey">
+    android:background="@color/background_login">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -15,14 +15,12 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="PROBANDOOOO"
         android:gravity="center"
-
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 

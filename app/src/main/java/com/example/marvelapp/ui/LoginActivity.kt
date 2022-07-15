@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.marvelapp.R
@@ -83,7 +81,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showErrors() {
         Toast(this).showCustomToast(getString(R.string.user_or_password_error), this)
-        binding.tvUser.error = "error"
+        if (binding.user.text.isEmpty())
+            binding.tvUser.error = getString(R.string.title_error)
+        if (binding.pass.text.isEmpty())
+            binding.tvPass.error = getString(R.string.title_error)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

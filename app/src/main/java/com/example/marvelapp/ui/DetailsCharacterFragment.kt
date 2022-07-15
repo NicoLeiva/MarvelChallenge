@@ -42,8 +42,10 @@ class DetailsCharacterFragment : Fragment() {
             }
         }
         Picasso.get().load(url).into(binding.imageView)
-
         binding.subtitle.text = data?.description
+        binding.close.setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
 
     companion object {

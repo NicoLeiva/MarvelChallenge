@@ -7,9 +7,6 @@ object PagingModules {
         single {
             CharacterPagingSource(get())
         }
-        single {
-            CharacterRemoteDataSource(get())
-        }
     }
     val all = arrayOf(pagingModule)
 }

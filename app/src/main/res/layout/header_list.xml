@@ -1,60 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="120dp"
-    app:cardCornerRadius="8dp"
-    android:padding="8dp">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/height_120"
+        android:padding="@dimen/padding_medium"
+        android:layout_marginBottom="@dimen/margin_small_extra"
+        app:cardCornerRadius="8dp">
 
-        <TextView
-            android:id="@+id/character_title"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/character_subtitle"
-            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/character_subtitle"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:gravity="center_horizontal"
-            android:textSize="14sp"
-            android:textAlignment="center"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/character_title"
-            />
+            <TextView
+                android:id="@+id/character_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="@dimen/font_24"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/character_subtitle"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:scaleType="fitStart"
-            android:adjustViewBounds="true"
-            android:src="@android:drawable/ic_menu_agenda"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            <TextView
+                android:id="@+id/character_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="@dimen/font_14"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/character_title" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/height_120"
+                android:layout_height="@dimen/height_120"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/text_events"
+                android:scaleType="fitStart"
+                android:src="@android:drawable/ic_menu_agenda"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
