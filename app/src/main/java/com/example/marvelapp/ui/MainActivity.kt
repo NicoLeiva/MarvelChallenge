@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity(){
         if (LoginActivity.ProviderType.FACEBOOK.name == provider)
             LoginManager.getInstance().logOut()
         FirebaseAuth.getInstance().signOut()
-        onBackPressed()
+        finish()
         return true
     }
 }
