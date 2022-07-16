@@ -157,6 +157,7 @@ class LoginActivity : AppCompatActivity() {
             putExtra(getString(R.string.text_email), username)
             putExtra(getString(R.string.text_provider), provider)
         }
+
         startActivity(mainIntent)
 
     }

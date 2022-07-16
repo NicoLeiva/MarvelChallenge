@@ -32,7 +32,7 @@ class EventsFragment : Fragment() {
     }
 
     private fun initViewModel(){
-        viewModel.responseEvent.observe(viewLifecycleOwner){
+        viewModel.getResponseEvent().observe(viewLifecycleOwner){
             when(it) {
                 is CharacterViewModel.EventState.Error -> showErrorAlert(it.error)
                 is CharacterViewModel.EventState.Loading -> binding.progressBar.isVisible = it.loading

@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 
 class CharacterViewModel(private var repository: ICharacterRepository): ViewModel() {
 
-    val responseEvent = MutableLiveData<EventState>()
+    private lateinit var responseEvent : MutableLiveData<EventState>
 
     fun getListData(): Flow<PagingData<CharacterData>>{
         return repository.getCharacterData().cachedIn(viewModelScope)
@@ -25,6 +25,13 @@ class CharacterViewModel(private var repository: ICharacterRepository): ViewMode
         responseEvent.postValue(EventState.Error(message))
     }
 
+    fun getResponseEvent(): MutableLiveData<EventState>{
+        if(!::responseEvent.isInitialized){
+            responseEvent = MutableLiveData<EventState>()
+            responseEvent.postValue(EventState.Loading(true))
+        }
+        return responseEvent
+    }
     fun getEventData() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {

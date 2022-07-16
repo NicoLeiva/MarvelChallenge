@@ -58,6 +58,11 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
+    override fun onBackPressed() {
+        if(supportFragmentManager.backStackEntryCount>0){
+            supportFragmentManager.popBackStack()
+        }
+    }
     private fun saveDataSession() {
         val bundle = intent.extras
         val email = bundle?.getString(getString(R.string.text_email))
